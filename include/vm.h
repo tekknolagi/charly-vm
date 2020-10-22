@@ -325,6 +325,7 @@ public:
                    bool has_parent_class,
                    bool has_constructor);
   void op_pop();
+  void op_popn(uint8_t n);
   void op_dup();
   void op_dupn(uint32_t count);
   void op_swap();

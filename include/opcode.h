@@ -255,6 +255,12 @@ enum Opcode : uint8_t {
   // Pop a value off the stack
   Pop,
 
+  // Pop n values off the stack
+  //
+  // args:
+  // - n
+  PopN,
+
   // Duplicate the top value of the stack
   Dup,
 
@@ -509,6 +515,7 @@ static constexpr uint32_t kInstructionLengths[]{
   /* PutHash */                           1 + i32,
   /* PutClass */                          1 + i64 + i32 * 4 + i8 + i8,
   /* Pop */                               1,
+  /* PopN */                              2,
   /* Dup */                               1,
   /* Dupn */                              1 + i32,
   /* Swap */                              1,

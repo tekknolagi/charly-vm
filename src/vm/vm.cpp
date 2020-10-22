@@ -2518,6 +2518,7 @@ void VM::run() {
                                           &&charly_main_switch_puthash,
                                           &&charly_main_switch_putclass,
                                           &&charly_main_switch_pop,
+                                          &&charly_main_switch_popn,
                                           &&charly_main_switch_dup,
                                           &&charly_main_switch_dupn,
                                           &&charly_main_switch_swap,
@@ -2800,6 +2801,16 @@ charly_main_switch_putclass : {
 charly_main_switch_pop : {
   OPCODE_PROLOGUE();
   this->op_pop();
+  OPCODE_EPILOGUE();
+  NEXTOP();
+}
+
+charly_main_switch_popn : {
+  OPCODE_PROLOGUE();
+  uint8_t n = *reinterpret_cast<uint8_t*>(this->ip + sizeof(n));
+  for (uint8_t i = 0; i < n; i++) {
+    this->op_pop();
+  }
   OPCODE_EPILOGUE();
   NEXTOP();
 }
